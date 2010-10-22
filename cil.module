@@ -10,7 +10,9 @@ function cil_menu() {
     'page callback' => 'cil_admin_page',
     'file' => 'cil.admin.inc',
     'access arguments' => array('administer cil')
-);
+  );
+  return $items;
+}
 
 /** 
  * Implementation of hook_perm().
