@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * implementation of hook_menu().
+ */
+function cil_menu() {
+  $items['admin/config/cil'] = array(
+    'title' => 'cil',
+    'description' => 'Configure cil integration',
+    'page callback' => 'cil_admin_page',
+    'file' => 'cil.admin.inc',
+    'access arguments' => array('administer cil')
+);
+
+/** 
+ * Implementation of hook_perm().
+ */
+function cil_perm() {
+  return  array('administer cil');
+}
+

@@ -1,0 +1,4 @@
+name = Cil
+description = DVCS backed issue tracking system
+core = 6.x
+package = Issue Tracking
