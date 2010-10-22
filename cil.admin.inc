@@ -7,7 +7,8 @@
  * menu callback page for configuring this module
  */
 function cil_admin_page() {
-  $result = db_query("SELECT * FROM {cil_repos}");
+  $headers = array('name', 'directory');
+  $result = pager_query("SELECT * FROM {cil_repos}". tablesort_sql($headers));
   while ($repo = db_fetch_object($result)) {
     $rows[] = array($repo->name);
   }

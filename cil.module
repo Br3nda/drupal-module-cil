@@ -9,7 +9,8 @@ function cil_menu() {
     'description' => 'Configure cil integration',
     'page callback' => 'cil_admin_page',
     'file' => 'cil.admin.inc',
-    'access arguments' => array('administer cil')
+    'access arguments' => array('administer cil'),
+    'type' => MENU_NORMAL_ITEM,
   );
   return $items;
 }
