@@ -4,7 +4,7 @@
  * implementation of hook_menu().
  */
 function cil_menu() {
-  $items['admin/config/cil'] = array(
+  $items['admin/settings/cil'] = array(
     'title' => 'cil',
     'description' => 'Configure cil integration',
     'page callback' => 'cil_admin_page',

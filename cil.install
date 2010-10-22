@@ -1,0 +1,27 @@
+<?php
+
+function cil_install() {
+  drupal_install_schema('cil');
+}
+
+function cil_uninstall() {
+  drupal_uninstall_schema('cil');
+}
+
+function cil_schema() {
+  $schema['cil_repos'] = array(
+    'fields' => array(
+      'cil_repo_id' => array('type' => 'serial'),
+      'name' => array('type' => 'text', 'not null' => TRUE),
+      'directory' => array('type' => 'text', 'not null' => TRUE),
+    ),
+    'primary key' => array('cil_repo_id'),
+    'unique keys' => array(
+      'cil_unique_name' => array('name')
+    ),
+    'indexes' => array(
+      'cil_name_index' => array('name')
+    ),
+  );
+  return $schema;
+}
