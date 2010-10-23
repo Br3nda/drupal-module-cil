@@ -12,7 +12,7 @@ class CilModuleTests extends DrupalWebTestCase {
     parent::setUp('cil');
   }
   function testConfiguration() {
-    $adminuser = $this->drupalCreateUser( array('configure cil'));
+    $adminuser = $this->drupalCreateUser( array('administer cil'));
     $this->drupalLogin($adminuser);
     $this->drupalGet('admin/settings/cil');
     $this->assertText('No repositories configured.');
