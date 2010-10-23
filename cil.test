@@ -1,0 +1,40 @@
+<?php
+
+class CilModuleTests extends DrupalWebTestCase {
+  function getInfo() {
+    return array(
+      'name' => 'Cil',
+      'description' => 'Ensure that the cil modules works',
+      'group' => 'Cil',
+    );
+  }
+  function setUp() {
+    parent::setUp('cil');
+  }
+  function testConfiguration() {
+    $adminuser = $this->drupalCreateUser( array('configure cil'));
+    $this->drupalLogin($adminuser);
+    $this->drupalGet('admin/settings/cil');
+    $this->assertText('No repositories configured.');
+    $this->clickLink('Add');
+    $repo = array('name' => 'Cil Module', 'directory' => '/home/brenda/projects/modules/drupal-module-cil');
+    $this->drupalPost($this->getUrl(), $repo, 'Add');
+    $this->assertNoText('No repositories configured');
+    $this->assertText('Cil Module');
+    $this->assertText('/home/brenda/projects/modules/drupal-module-cil');
+    $this->clickLink('Edit');
+    $this->assertRaw('Cil Module');
+    $this->assertRaw('/home/brenda/projects/modules/drupal-module-cil');
+
+    $repo['name'] = 'hello world';
+    $this->drupalPost($this->getUrl(), $repo, 'Save');
+    $this->assertText('hello world');
+
+    $this->clickLink('Sync');
+    $this->assertResponse(200);
+    
+    $this->clickLink('Delete');
+    $this->drupalPost($this->getUrl(), array(), 'Delete');
+    
+  }
+}
