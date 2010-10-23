@@ -15,9 +15,15 @@ function cil_admin_page($op='view', $id=null) {
     break;
     case 'edit': return drupal_get_form('cil_admin_form', $id);
     break;
-    
+    case 'sync': return cil_admin_sync($id);
+    break;
   }
 }
+
+function cil_admin_sync($id) {
+  return '';
+}
+
 function cil_admin_view() {
   $output = '';
 
