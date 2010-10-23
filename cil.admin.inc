@@ -21,7 +21,7 @@ function cil_admin_page($op='view', $id=null) {
 function cil_admin_view() {
   $output = '';
 
-  $output .= l('Add', 'admin/settings/cil/add');
+  $output .= '<p>'. l('Add', 'admin/settings/cil/add') .'</p>';
   
   $headers = array('name', 'directory');
   $result = pager_query("SELECT * FROM {cil_repos}". tablesort_sql($headers));
@@ -29,7 +29,7 @@ function cil_admin_view() {
     $rows[] = array($repo->name);
   }
   if(!count($rows)) {
-    $output .= t('No repositories configured');
+    $output .= '<p>'. t('No repositories configured.') .'</p>';
   }
   else {
     $output .= theme('table', $headers, $rows);
@@ -37,8 +37,23 @@ function cil_admin_view() {
   return $output;
 }
 
-function cil_admin_form($id) {
+function cil_admin_form($id=null) {
   $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Name'),
+    '#required' => TRUE
+  );
+  $form['directory'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Directory'),
+    '#required' => TRUE
+  );
+  $form['add'] = array(
+    '#type' => 'submit',
+    '#value' => t('Add'),
   );
   return $form;
+}
+
+function cil_admin_form_validate($form, $form_state) {
 }
